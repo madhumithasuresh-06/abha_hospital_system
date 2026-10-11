@@ -1,0 +1,12 @@
+<?php
+session_start();
+require_once __DIR__ . '/../includes/auth.php';
+require_once __DIR__ . '/../includes/functions.php';
+requireRole('receptionist');
+$hospitalId = currentHospitalId();
+$hospital = null; $pending = 0; $today = 0;
+if ($hospitalId) { $hospitalQuery = $pdo->prepare('SELECT id, hospital_name FROM hospitals WHERE id = :id LIMIT 1'); $hospitalQuery->execute([':id' => $hospitalId]); $hospital = $hospitalQuery->fetch(PDO::FETCH_ASSOC); $query = $pdo->prepare("SELECT status, COUNT(*) AS total FROM appointments WHERE hospital_id = :hospital_id GROUP BY status"); $query->execute([':hospital_id' => $hospitalId]); foreach ($query as $row) { if ($row['status'] === 'requested') { $pending = (int) $row['total']; } } $todayQuery = $pdo->prepare('SELECT COUNT(*) FROM appointments WHERE hospital_id = :hospital_id AND DATE(appointment_date) = CURRENT_DATE'); $todayQuery->execute([':hospital_id' => $hospitalId]); $today = (int) $todayQuery->fetchColumn(); }
+$pageTitle = 'Front Desk Dashboard'; require __DIR__ . '/../includes/header.php';
+?>
+<div class="hero-panel p-4 rounded-3 mb-4"><p class="text-uppercase text-secondary small fw-semibold mb-1">Front Desk Officer</p><h1 class="h2">Welcome to the Front Desk</h1><p class="mb-2">Your workspace is restricted to the assigned hospital.</p><strong><?= e($hospital['hospital_name'] ?? 'Hospital assignment pending') ?></strong><div class="d-flex flex-wrap gap-2 mt-3"><a class="btn btn-primary" href="<?= e(appUrl('receptionist/appointments.php')) ?>">Appointment requests</a><a class="btn btn-outline-dark" href="<?= e(appUrl('receptionist/register_patient.php')) ?>">Register patient</a><a class="btn btn-outline-dark" href="<?= e(appUrl('receptionist/patients.php')) ?>">Search patients</a></div></div><div class="row g-3"><div class="col-md-4"><div class="card stat-card p-3 h-100"><div class="text-muted small">Pending requests</div><div class="display-6 fw-bold"><?= $pending ?></div></div></div><div class="col-md-4"><div class="card stat-card p-3 h-100"><div class="text-muted small">Today's appointments</div><div class="display-6 fw-bold"><?= $today ?></div></div></div><div class="col-md-4"><div class="card stat-card p-3 h-100"><div class="text-muted small">Patient registration</div><p class="text-muted mb-0 mt-2">Verify Health Identity and register patients for this hospital.</p></div></div></div>
+<?php require __DIR__ . '/../includes/footer.php'; ?>

@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap');
+
+:root { --ink: #183247; --muted: #617482; --teal: #087f7a; --teal-dark: #075e62; --paper: #f5f8f7; --line: #dbe6e3; --coral: #d96b59; }
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', sans-serif; min-height: 100vh; }
+h1, h2, h3, .navbar-brand { font-family: 'Manrope', sans-serif; }
+.app-navbar { background: var(--ink); padding: .9rem 0; }
+.navbar-brand { font-size: 1rem; letter-spacing: .01em; }
+.brand-mark { align-items: center; background: var(--teal); border-radius: 50%; color: #fff; display: inline-flex; font-family: 'DM Sans', sans-serif; font-size: 1.35rem; font-weight: 500; height: 30px; justify-content: center; width: 30px; }
+.nav-link { font-size: .9rem; }
+.page-back { margin-bottom: 1.25rem; }
+.back-link { background: transparent; border: 0; color: var(--muted); font-size: .92rem; padding: .25rem 0; }
+.back-link:hover { color: var(--teal); }
+.btn-primary { background: var(--teal); border-color: var(--teal); }
+.btn-primary:hover, .btn-primary:focus { background: var(--teal-dark); border-color: var(--teal-dark); }
+.portal-hero { align-items: stretch; background: #e3efec; display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(240px, .7fr); min-height: 390px; overflow: hidden; }
+.hero-copy { align-self: center; max-width: 720px; padding: 4rem clamp(1.5rem, 6vw, 6rem); }
+.eyebrow { color: var(--teal); font-size: .74rem; font-weight: 700; letter-spacing: .14em; margin-bottom: .8rem; text-transform: uppercase; }
+.hero-copy h1 { font-size: clamp(2.4rem, 5vw, 4.5rem); letter-spacing: -.04em; line-height: 1.04; max-width: 760px; }
+.hero-lead { color: var(--muted); font-size: 1.2rem; line-height: 1.6; margin: 1.35rem 0 2rem; max-width: 600px; }
+.hero-aside { align-items: flex-start; background: var(--teal-dark); color: #e8f7f4; display: flex; flex-direction: column; justify-content: center; padding: 3rem; }
+.hero-aside strong { font-family: 'Manrope', sans-serif; font-size: 1.7rem; margin-top: 1rem; }
+.hero-aside span:not(.hero-plus) { color: #b9ddda; margin-top: .35rem; }
+.hero-plus { color: #f3c36b; font-size: 4rem; font-weight: 300; line-height: .7; }
+.hero-line { background: #54aaa3; height: 1px; margin: 2.5rem 0 1rem; width: 100%; }
+.hero-aside small { color: #b9ddda; font-size: .72rem; letter-spacing: .12em; }
+.section-heading { margin-bottom: 1.6rem; }
+.section-heading h2 { font-size: 1.8rem; }
+.service-tile { background: #fff; border: 1px solid var(--line); padding: 1.6rem; transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease; }
+.service-tile:hover { border-color: var(--teal); transform: translateY(-3px); }
+.service-number { color: var(--coral); font-size: .75rem; font-weight: 700; letter-spacing: .1em; }
+.about-strip { background: #fff; border-left: 4px solid #f0b95c; padding: 2rem 2.25rem; }
+.card { border-radius: 4px; }
+.stat-card { border: 1px solid var(--line); border-top: 3px solid var(--teal); box-shadow: 0 4px 18px rgba(24, 50, 71, .06); }
+.table { background: #fff; }
+footer { color: var(--muted) !important; }
+.setup-shell { display: flex; justify-content: center; padding: 3rem 0; }
+.setup-card { background: #fff; border-top: 4px solid var(--teal); box-shadow: 0 8px 30px rgba(24, 50, 71, .08); max-width: 560px; padding: 2.25rem; width: 100%; }
+.patient-form-card { max-width: 920px; }
+.form-section-title { border-bottom: 1px solid var(--line); color: var(--ink); font-size: 1rem; margin: 1.8rem 0 1rem; padding-bottom: .55rem; }
+.patient-registration-form .form-label { font-weight: 600; margin-bottom: .35rem; }
+@media (max-width: 700px) { .portal-hero { display: block; } .hero-copy { padding: 3rem 1.5rem; } .hero-aside { min-height: 220px; padding: 2rem 1.5rem; } }
+
+/* ========== PASSWORD VISIBILITY TOGGLE ========== */
+.password-field-wrap {
+    position: relative;
+    width: 100%;
+    display: block;
+}
+
+.password-field-wrap .password-toggle-field {
+    width: 100%;
+    padding-right: 2.85rem;
+}
+
+.password-visibility-toggle {
+    position: absolute;
+    right: .65rem;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    color: #183247;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1rem;
+    line-height: 1;
+    z-index: 3;
+    padding: 0;
+    transition: background-color .2s ease, color .2s ease;
+}
+
+.password-visibility-toggle:hover {
+    background: rgba(8, 127, 122, 0.14);
+    color: var(--teal-dark);
+}
+
+.password-visibility-toggle:focus {
+    outline: 2px solid rgba(8, 127, 122, 0.35);
+    outline-offset: 2px;
+}
+
